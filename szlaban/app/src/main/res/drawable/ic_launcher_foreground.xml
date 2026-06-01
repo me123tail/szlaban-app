@@ -1,0 +1,92 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- 1. Deep translucent drop-shadow under the shield for a 3D float effect -->
+    <path
+        android:fillColor="#22000000"
+        android:pathData="M54,25 L78,28 L78,53 C78,71 66,81 54,88 C42,81 30,71 30,53 L30,28 Z" />
+
+    <!-- 2. Main Outer Bevel (Shield Rim) with a premium silver-chrome metallic look -->
+    <!-- Left outer side (Reflective highlight metal) -->
+    <path
+        android:fillColor="#E2E8F0"
+        android:pathData="M54,21 L30,24 L30,50 C30,68 42,78 54,85 Z" />
+
+    <!-- Right outer side (Deeper brushed steel-bevel shadow) -->
+    <path
+        android:fillColor="#94A3B8"
+        android:pathData="M54,21 L78,24 L78,50 C78,68 66,78 54,85 Z" />
+
+    <!-- 3. Inner Shield Body Left Side (Vibrant, royal security blue) -->
+    <path
+        android:fillColor="#2563EB"
+        android:pathData="M54,24 L33,27 L33,49 C33,65 43,75 54,81 Z" />
+
+    <!-- Inner Shield Body Right Side (Deep majestic cobalt blue shadow) -->
+    <path
+        android:fillColor="#1D4ED8"
+        android:pathData="M54,24 L75,27 L75,49 C75,65 65,75 54,81 Z" />
+
+    <!-- 4. Glossy Specular Diagonal Glass Splash across the shield for realistic 3D sheen -->
+    <path
+        android:fillColor="#15FFFFFF"
+        android:pathData="M33,41 L51,27 L57,27 L33,47 Z" />
+    <path
+        android:fillColor="#08FFFFFF"
+        android:pathData="M38,51 L62,27 L67,27 L41,54 Z" />
+
+    <!-- 5. Padlock Shackle (Chrome-silver Loop) -->
+    <!-- Dark backup shadow of the shackle -->
+    <path
+        android:strokeColor="#1E293B"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:pathData="M46,45 L46,37 C46,32.5 49.5,29 54,29 C58.5,29 63,32.5 63,37 L63,45" />
+    <!-- Outer white highlight of the shackle -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:pathData="M46,45 L46,37 C46,32.5 49.5,29 54,29 C58.5,29 63,32.5 63,37 L63,45" />
+    <!-- Inner metallic silver depth of the shackle -->
+    <path
+        android:strokeColor="#CBD5E1"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M46,45 L46,37 C46,32.5 49.5,29 54,29 C58.5,29 63,32.5 63,37 L63,45" />
+
+    <!-- 6. Golden Padlock Body -->
+    <!-- Soft shadow under padlock body -->
+    <path
+        android:fillColor="#22000000"
+        android:pathData="M42,45 L66,45 A3,3 0 0,1 69,48 L69,62 A3,3 0 0,1 66,65 L42,65 A3,3 0 0,1 39,62 L39,48 A3,3 0 0,1 42,45 Z" />
+
+    <!-- Left side of padlock body (Vibrant bright amber/gold) -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M43,43 L54,43 L54,61 L43,61 C41.5,61 40,59.5 40,58 L40,46 C40,44.5 41.5,43 43,43 Z" />
+
+    <!-- Right side of padlock body (Warm burnished bronze/deep gold shadow) -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M54,43 L65,43 C66.5,43 68,44.5 68,46 L68,58 C68,59.5 66.5,61 65,61 L54,61 Z" />
+
+    <!-- Bevel highlights on padlock body -->
+    <path
+        android:fillColor="#FFF6D6"
+        android:pathData="M43,43 L54,43 L54,44.5 L43,44.5 C41.8,44.5 41.2,45 41,46 C41,44.8 41.8,43 43,43 Z" />
+
+    <!-- 7. Keyhole in the center of the padlock -->
+    <!-- Top circular cavity of the keyhole -->
+    <path
+        android:fillColor="#090D1A"
+        android:pathData="M54,48 A2,2 0 1,1 54,52 A2,2 0 1,1 54,48 Z" />
+    <!-- Bottom flare/triangular stem of the keyhole -->
+    <path
+        android:fillColor="#090D1A"
+        android:pathData="M52.5,51 L55.5,51 L56.5,56.5 L51.5,56.5 Z" />
+
+</vector>
