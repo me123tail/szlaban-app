@@ -1,0 +1,30 @@
+publishing:
+  email:
+    recipients:
+      - me123tail@wp.pl
+
+workflows:
+  android-release:
+    name: Android Release APK
+    max_build_duration: 30
+    instance_type: mac_mini_m2
+    working_directory: szlaban
+    environment:
+      groups:
+        - android-signing
+      vars:
+        PACKAGE_NAME: "com.example.szlaban"
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    triggering:
+      events:
+        - push
+      branches:
+        - main
+    scripts:
+      - name: Build Android Release APK
+        script: |
+          ./gradlew assembleRelease
+    artifacts:
+      - app/build/outputs/apk/release/*.apk
