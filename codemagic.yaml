@@ -12,23 +12,30 @@ workflows:
     scripts:
       - name: Build Android Release APK
         script: |
-          # 1. Tworzenie wymaganego pliku .env.example w katalogu głównym
+          # 1. Tworzenie wymaganego pliku .env.example
           echo "Tworzę plik .env.example..."
           touch .env.example
           
-          # 2. Generowanie wrappera dokładnie w katalogu roboczym (szlaban)
-          echo "Generuję pliki uruchomieniowe gradlew..."
-          gradle wrapper
-          
-          # 3. Nadanie uprawnień do uruchomienia pliku
+          # 2. Pobieranie oficjalnych, gotowych plików Gradle Wrapper (naprawa błędu wrapper)
+          echo "Pobieram oficjalne pliki startowe gradlew..."
+          curl -LO https://raw.githubusercontent.com/gradle/gradle/main/gradlew
           chmod +x gradlew
           
-          # 4. Sprawdzenie struktury – jeśli pliki są w podfolderze 'app', budujemy z parametrem -p
+          mkdir -p gradle/wrapper
+          curl -L -o gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/main/gradle/wrapper/gradle-wrapper.jar
+          
+          # Tworzymy podstawową konfigurację właściwości wrappera (wersja 8.5 - bardzo stabilna)
+          echo "distributionBase=GRADLE_USER_HOME" > gradle/wrapper/gradle-wrapper.properties
+          echo "distributionPath=wrapper/dists" >> gradle/wrapper/gradle-wrapper.properties
+          echo "distributionUrl=https\://services.gradle.org/distributions/gradle-8.5-bin.zip" >> gradle/wrapper/gradle-wrapper.properties
+          echo "zipStoreBase=GRADLE_USER_HOME" >> gradle/wrapper/gradle-wrapper.properties
+          echo "zipStorePath=wrapper/dists" >> gradle/wrapper/gradle-wrapper.properties
+          
+          # 3. Uruchomienie kompilacji za pomocą pobranego stabilnego wrappera
+          echo "Uruchamiam właściwą kompilację APK..."
           if [ -d "app" ] && [ -f "app/build.gradle.kts" ]; then
-            echo "Wykryto konfigurację w podfolderze 'app'. Uruchamiam kompilację..."
             ./gradlew -p app assembleRelease
           else
-            echo "Uruchamiam standardową kompilację..."
             ./gradlew assembleRelease
           fi
     artifacts:
