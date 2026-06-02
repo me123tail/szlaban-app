@@ -18,15 +18,14 @@ workflows:
           fi
           
           echo "Aktualna ścieżka: $(pwd)"
-          echo "Zawartość katalogu:"
-          ls -la
           
-          # 2. Zainstaluj Gradle za pomocą Homebrew (wbudowanego w maszyny macOS Codemagic)
-          echo "Instaluję Gradle w chmurze..."
-          brew install gradle
+          # 2. Generowanie brakujących plików wrapper (gradlew) za pomocą systemowego polecenia
+          echo "Generuję brakujące pliki uruchomieniowe gradlew..."
+          gradle wrapper
           
-          # 3. Uruchom kompilację za pomocą świeżo zainstalowanego globalnego Gradle
+          # 3. Nadanie uprawnień i natychmiastowe uruchomienie kompilacji APK
           echo "Uruchamiam kompilację APK..."
-          gradle assembleRelease
+          chmod +x gradlew
+          ./gradlew assembleRelease
     artifacts:
       - "**/build/outputs/apk/release/*.apk"
