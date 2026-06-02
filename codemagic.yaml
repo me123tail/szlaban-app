@@ -12,19 +12,21 @@ workflows:
     scripts:
       - name: Build Android Release APK
         script: |
-          # Automatyczne szukanie pliku gradlew w projekcie
-          GRADLEW_PATH=$(find . -name "gradlew" -print -quit)
-          
-          if [ -z "$GRADLEW_PATH" ]; then
-            echo "BŁĄD: Nie znaleziono pliku gradlew nigdzie w projekcie!"
-            exit 1
+          # 1. Wejdź do katalogu głównego kodu Androida (tam gdzie jest build.gradle.kts)
+          if [ -d "app" ]; then
+            cd app
           fi
           
-          GRADLEW_DIR=$(dirname "$GRADLEW_PATH")
-          echo "Znaleziono gradlew w: $GRADLEW_DIR. Wchodzę tam..."
-          cd "$GRADLEW_DIR"
+          echo "Aktualna ścieżka: $(pwd)"
+          echo "Zawartość katalogu:"
+          ls -la
           
-          chmod +x gradlew
-          ./gradlew assembleRelease
+          # 2. Zainstaluj Gradle za pomocą Homebrew (wbudowanego w maszyny macOS Codemagic)
+          echo "Instaluję Gradle w chmurze..."
+          brew install gradle
+          
+          # 3. Uruchom kompilację za pomocą świeżo zainstalowanego globalnego Gradle
+          echo "Uruchamiam kompilację APK..."
+          gradle assembleRelease
     artifacts:
       - "**/build/outputs/apk/release/*.apk"
