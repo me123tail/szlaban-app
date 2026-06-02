@@ -12,7 +12,19 @@ workflows:
     scripts:
       - name: Build Android Release APK
         script: |
-          cd app
+          # Automatyczne szukanie pliku gradlew w projekcie
+          GRADLEW_PATH=$(find . -name "gradlew" -print -quit)
+          
+          if [ -z "$GRADLEW_PATH" ]; then
+            echo "BŁĄD: Nie znaleziono pliku gradlew nigdzie w projekcie!"
+            exit 1
+          fi
+          
+          GRADLEW_DIR=$(dirname "$GRADLEW_PATH")
+          echo "Znaleziono gradlew w: $GRADLEW_DIR. Wchodzę tam..."
+          cd "$GRADLEW_DIR"
+          
+          chmod +x gradlew
           ./gradlew assembleRelease
     artifacts:
-      - szlaban/app/build/outputs/apk/release/*.apk
+      - "**/build/outputs/apk/release/*.apk"
