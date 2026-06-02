@@ -12,18 +12,20 @@ workflows:
     scripts:
       - name: Build Android Release APK
         script: |
-          # 1. Wejdź do katalogu głównego kodu Androida (tam gdzie jest build.gradle.kts)
+          # 1. Tworzenie wymaganego pliku .env.example, aby Gradle nie wyrzucał błędu
+          echo "Tworzę plik .env.example..."
+          touch .env.example
+          
+          # 2. Wejdź do katalogu kodu Androida
           if [ -d "app" ]; then
             cd app
           fi
           
-          echo "Aktualna ścieżka: $(pwd)"
-          
-          # 2. Generowanie brakujących plików wrapper (gradlew) za pomocą systemowego polecenia
-          echo "Generuję brakujące pliki uruchomieniowe gradlew..."
+          # 3. Generowanie plików wrapper
+          echo "Generuję pliki uruchomieniowe gradlew..."
           gradle wrapper
           
-          # 3. Nadanie uprawnień i natychmiastowe uruchomienie kompilacji APK
+          # 4. Uruchomienie kompilacji APK
           echo "Uruchamiam kompilację APK..."
           chmod +x gradlew
           ./gradlew assembleRelease
